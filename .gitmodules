@@ -1,0 +1,3 @@
+[submodule "MatrixKeypad_Python"]
+	path = MatrixKeypad_Python
+	url = https://github.com/rainierez/MatrixKeypad_Python
