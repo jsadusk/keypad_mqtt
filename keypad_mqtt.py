@@ -20,11 +20,11 @@ while True:
     if digit is not None and digit != lastkey and nones == 0:
         
         nones = 5
-        print("Got %d"%digit)
+        print("Got {}"_format(digit))
         code = code + str(digit)
 
         if len(code) == 4:
-            print("publishing %s"%code)
+            print("publishing {}"_format(code))
             #client.publish("keypad/code", payload=code)
             code = ""
     elif digit is None and nones > 0:
