@@ -23,11 +23,11 @@ code_duration = datetime.timedelta(seconds = 5)
 client.loop_start();
 
 def output_key(key):
-    print("Got {}"_format(digit))
+    print("Got {}".format(digit))
     code = code + str(digit)
 
     if len(code) == 4:
-        print("publishing {}"_format(code))
+        print("publishing {}".format(code))
         #client.publish("keypad/code", payload=code)
         code = ""
     
