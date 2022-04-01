@@ -5,6 +5,7 @@ Description=Keypad MQTT
 User=pi
 ExecStart=python3 /usr/local/keypad_mqtt/keypad_mqtt.py
 StandardOutput=syslog
+Environment="PYTHONPATH=/usr/local/keypad_mqtt/MatrixKeypad_Python"
 
 [Install]
 WantedBy=multi-user.target
