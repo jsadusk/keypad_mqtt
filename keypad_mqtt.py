@@ -13,9 +13,9 @@ client.connect("192.168.50.80")
 code = ""
 nones = 5
 last_registered = None
-last_registered_ts = datetime.now()
+last_registered_ts = datetime.datetime.now()
 last_input = None
-last_input_ts = datetime.now()
+last_input_ts = datetime.datetime.now()
 
 bounce_duration = datetime.timedelta(milliseconds=100)
 code_duration = datetime.timedelta(seconds = 5)
@@ -34,7 +34,7 @@ def output_key(key):
 
 while True:
     digit = kp.getKey()
-    now_ts = datetime.now()
+    now_ts = datetime.datetime.now()
 
     if digit == last_input:
         if now_ts - last_input_ts > bounce_duration and last_input != last_registered:
