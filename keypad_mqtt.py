@@ -28,7 +28,7 @@ while True:
 
     if digit == last_input:
         if now_ts - last_input_ts > bounce_duration and last_input != last_registered:
-            if last_input == None and now_ts - last_registered_ts > bounce_duration:
+            if last_input != None and now_ts - last_registered_ts > bounce_duration:
                 print("Got {}".format(digit))
                 code = code + str(digit)
 
@@ -46,7 +46,7 @@ while True:
 
     lastkey = digit
 
-    if last_registered == None and now_ts - last_registered_ts > code_duration:
+    if code != "" and last_registered == None and now_ts - last_registered_ts > code_duration:
         print("reset")
         code = ""
         
