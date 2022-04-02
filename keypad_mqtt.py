@@ -22,16 +22,6 @@ code_duration = datetime.timedelta(seconds = 5)
 
 client.loop_start();
 
-def output_key(key):
-    print("Got {}".format(digit))
-    code = code + str(digit)
-
-    if len(code) == 4:
-        print("publishing {}".format(code))
-        #client.publish("keypad/code", payload=code)
-        code = ""
-    
-
 while True:
     digit = kp.getKey()
     now_ts = datetime.datetime.now()
@@ -39,7 +29,14 @@ while True:
     if digit == last_input:
         if now_ts - last_input_ts > bounce_duration and last_input != last_registered:
             if last_input == None and now_ts - last_registered_ts > bounce_duration:
-                output_key(last_registered)
+                print("Got {}".format(digit))
+                code = code + str(digit)
+
+                if len(code) == 4:
+                    print("publishing {}".format(code))
+                    #client.publish("keypad/code", payload=code)
+                    code = ""
+
                 
             last_registered = last_input
             last_registered_ts = now_ts
