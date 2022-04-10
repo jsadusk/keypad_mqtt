@@ -41,6 +41,7 @@ while True:
             last_registered = last_input
             last_registered_ts = now_ts
     else:
+        print("New {}".format(digit))
         last_input = digit
         last_input_ts = now_ts
 
