@@ -17,7 +17,7 @@ last_registered_ts = datetime.datetime.now()
 last_input = None
 last_input_ts = datetime.datetime.now()
 
-bounce_duration = datetime.timedelta(milliseconds=100)
+bounce_duration = datetime.timedelta(milliseconds=20)
 code_duration = datetime.timedelta(seconds = 5)
 
 client.loop_start();
@@ -30,12 +30,16 @@ while True:
         if now_ts - last_input_ts > bounce_duration and last_input != last_registered:
             if last_input != None and now_ts - last_registered_ts > bounce_duration:
                 print("Got {}".format(digit))
-                code = code + str(digit)
-
-                if len(code) == 4:
-                    print("publishing {}".format(code))
-                    #client.publish("keypad/code", payload=code)
+                if digit == '#':
                     code = ""
+                    print("force reset")
+                else:
+                    code = code + str(digit)
+                    print("Code is now [{}]".format(code))
+                    if len(code) == 4:
+                        print("publishing {}".format(code))
+                        client.publish("keypad/code", payload=code)
+                        code = ""
 
                 
             last_registered = last_input
