@@ -1,11 +1,18 @@
 [Unit]
 Description=Keypad MQTT
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
 
 [Service]
 User=pi
 ExecStart=python3 /usr/local/keypad_mqtt/keypad_mqtt.py
 StandardOutput=syslog
 Environment="PYTHONPATH=/usr/local/keypad_mqtt/MatrixKeypad_Python"
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

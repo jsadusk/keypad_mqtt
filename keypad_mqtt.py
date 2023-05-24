@@ -38,7 +38,21 @@ while True:
                     print("Code is now [{}]".format(code))
                     if len(code) == 4:
                         print("publishing {}".format(code))
-                        client.publish("keypad/code", payload=code)
+                        published = False
+                        retries = 0
+                        while not published:
+                            try:
+                                client.publish("keypad/code", payload=code)
+                                published = True
+                            except:
+                                if retries > 5:
+                                    raise
+                                client.reinitialize()
+                                client.username_pw_set("keypad", password="Cu1X8X7nwGy7")
+                                client.connect("192.168.50.80")
+                                client.loop_start();
+                                retries += 1
+                            
                         code = ""
 
                 
